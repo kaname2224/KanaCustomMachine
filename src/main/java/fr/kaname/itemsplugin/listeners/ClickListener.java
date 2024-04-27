@@ -33,13 +33,13 @@ public class ClickListener implements Listener {
         ItemStack item = playerInteractEvent.getPlayer().getInventory().getItemInMainHand();
         Player player = playerInteractEvent.getPlayer();
 
-        ItemStack MMOItems_DragonScute = MMOItems.plugin.getItem(MMOItems.plugin.getTypes().get("MATERIAL"), "DRAGON_SCUTE");
+        ItemStack MMOItemStack = MMOItems.plugin.getItem(MMOItems.plugin.getTypes().get("MATERIAL"), "DRAGON_SCUTE");
 
-        if (playerInteractEvent.getClickedBlock() == null) {
+        if (playerInteractEvent.getClickedBlock() == null || MMOItemStack == null || !playerInteractEvent.hasItem()) {
             return;
         }
 
-        if (action.isRightClick() && item.getItemMeta().equals(MMOItems_DragonScute.getItemMeta()) && playerInteractEvent.getHand() == EquipmentSlot.HAND) {
+        if (action.isRightClick() && item.getItemMeta().equals(MMOItemStack.getItemMeta()) && playerInteractEvent.getHand() == EquipmentSlot.HAND) {
             Block block = playerInteractEvent.getClickedBlock();
             boolean isStructureValid = plugin.getStructureDetectionManager().createMachine(player, block.getType(), block.getLocation());
 
