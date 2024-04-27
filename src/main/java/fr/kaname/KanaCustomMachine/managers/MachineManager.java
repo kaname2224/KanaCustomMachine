@@ -5,6 +5,8 @@ import fr.kaname.KanaCustomMachine.enums.Folders;
 import fr.kaname.KanaCustomMachine.objects.CraftingMachine;
 import fr.kaname.KanaCustomMachine.objects.CustomCraftingRecipe;
 import fr.kaname.KanaCustomMachine.objects.CustomInventory;
+import net.Indyuce.mmoitems.MMOItems;
+import net.Indyuce.mmoitems.api.Type;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class MachineManager {
@@ -89,11 +92,9 @@ public class MachineManager {
                     inputItemStack = new ItemStack(Material.AIR);
                 }
 
-                Material material = inputItemStack.getType();
                 int inputCraftingSlot = machine.getInputSlot().get(inputSlot);
 
-
-                if (customCraftingRecipe.isInputMaterialValid(inputCraftingSlot, material)) {
+                if (customCraftingRecipe.isInputMaterialValid(inputCraftingSlot, inputItemStack)) {
                     crafting = true;
                 } else {
                     crafting = false;
@@ -103,8 +104,7 @@ public class MachineManager {
             }
 
             if (crafting) {
-                Material resultMaterial = customCraftingRecipe.getOutputMaterial(0);
-                ItemStack itemStack = new ItemStack(resultMaterial);
+                ItemStack itemStack = customCraftingRecipe.getOutputItemStack(0);
                 inventory.setItem(machine.getOutputSlot().get(0), itemStack);
                 break;
             } else {
@@ -149,11 +149,47 @@ public class MachineManager {
             ConfigurationSection ingredient = recipeConfig.getConfigurationSection("ingredient");
 
             for (String slot : output.getKeys(false)){
-                customCraftingRecipe.addOutput(Integer.parseInt(slot), Material.valueOf(output.getString(slot)));
+
+                String itemType = output.getConfigurationSection(slot).getString("item_type");
+
+                ItemStack outputItemStack;
+
+                if (itemType != null && itemType.equals("MMOItems")) {
+                    String type = output.getConfigurationSection(slot).getString("mmoitem_type");
+                    String id = output.getConfigurationSection(slot).getString("mmoitem_id");
+                    outputItemStack = MMOItems.plugin.getItem(Type.get(type), id);
+                } else {
+                    outputItemStack = new ItemStack(Material.valueOf(output.getString(slot)));
+                    customCraftingRecipe.addOutput(Integer.parseInt(slot), outputItemStack);
+                }
+
+                customCraftingRecipe.addOutput(Integer.parseInt(slot), outputItemStack);
+
             }
 
             for (String slot : ingredient.getKeys(false)){
-                customCraftingRecipe.addInput(Integer.parseInt(slot), Material.valueOf(ingredient.getString(slot)));
+
+                ItemStack itemStack;
+                ConfigurationSection itemConfig = ingredient.getConfigurationSection(slot);
+                String itemType = null;
+
+                if (itemConfig != null) {
+                    itemType = itemConfig.getString("item_type");
+                }
+
+                if (itemType != null && itemType.equals("MMOItems")) {
+
+                    String type = ingredient.getConfigurationSection(slot).getString("mmoitem_type");
+                    String id = ingredient.getConfigurationSection(slot).getString("mmoitem_id");
+                    itemStack = MMOItems.plugin.getItem(Type.get(type), id);
+
+                } else {
+                    itemStack = new ItemStack(Material.valueOf(ingredient.getString(slot)));
+                }
+
+
+
+                customCraftingRecipe.addInput(Integer.parseInt(slot), itemStack);
             }
 
             craftingMachine.addCustomRecipe(customCraftingRecipe);
