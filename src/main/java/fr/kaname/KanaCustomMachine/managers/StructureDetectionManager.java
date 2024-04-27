@@ -1,9 +1,9 @@
-package fr.kaname.itemsplugin.managers;
+package fr.kaname.KanaCustomMachine.managers;
 
-import fr.kaname.itemsplugin.Itemsplugin;
-import fr.kaname.itemsplugin.objects.Rotation;
-import fr.kaname.itemsplugin.objects.Structure;
-import fr.kaname.itemsplugin.objects.StructureBlocks;
+import fr.kaname.KanaCustomMachine.KanaCustomMachine;
+import fr.kaname.KanaCustomMachine.enums.Rotation;
+import fr.kaname.KanaCustomMachine.objects.Structure;
+import fr.kaname.KanaCustomMachine.objects.StructureBlocks;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,9 +15,9 @@ import java.util.Map;
 
 public class StructureDetectionManager {
 
-    private final Itemsplugin plugin;
+    private final KanaCustomMachine plugin;
 
-    public StructureDetectionManager(Itemsplugin plugin) {
+    public StructureDetectionManager(KanaCustomMachine plugin) {
         this.plugin = plugin;
     }
 

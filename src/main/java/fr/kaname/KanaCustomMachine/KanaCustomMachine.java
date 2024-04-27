@@ -1,9 +1,9 @@
-package fr.kaname.itemsplugin;
+package fr.kaname.KanaCustomMachine;
 
-import fr.kaname.itemsplugin.listeners.ClickListener;
-import fr.kaname.itemsplugin.listeners.itemCommandListener;
-import fr.kaname.itemsplugin.managers.StructureDetectionManager;
-import fr.kaname.itemsplugin.managers.StructureManager;
+import fr.kaname.KanaCustomMachine.listeners.ClickListener;
+import fr.kaname.KanaCustomMachine.listeners.CommandListener;
+import fr.kaname.KanaCustomMachine.managers.StructureDetectionManager;
+import fr.kaname.KanaCustomMachine.managers.StructureManager;
 
 import java.io.File;
 
@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public final class Itemsplugin extends JavaPlugin {
+public final class KanaCustomMachine extends JavaPlugin {
 
     StructureManager structureManager;
     private StructureDetectionManager structureDetectionManager;
@@ -20,7 +20,7 @@ public final class Itemsplugin extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().log(Level.INFO, "Starting itemPlugins");
-        Objects.requireNonNull(this.getCommand("kanaitem")).setExecutor(new itemCommandListener(this));
+        Objects.requireNonNull(this.getCommand("custommachines")).setExecutor(new CommandListener(this));
         this.getServer().getPluginManager().registerEvents(new ClickListener(this), this);
         this.structureManager = new StructureManager(this);
         this.structureDetectionManager = new StructureDetectionManager(this);

@@ -1,9 +1,9 @@
-package fr.kaname.itemsplugin.listeners;
+package fr.kaname.KanaCustomMachine.listeners;
 
-import fr.kaname.itemsplugin.Itemsplugin;
-import fr.kaname.itemsplugin.objects.Rotation;
-import fr.kaname.itemsplugin.objects.Structure;
-import fr.kaname.itemsplugin.objects.StructureBlocks;
+import fr.kaname.KanaCustomMachine.KanaCustomMachine;
+import fr.kaname.KanaCustomMachine.enums.Rotation;
+import fr.kaname.KanaCustomMachine.objects.Structure;
+import fr.kaname.KanaCustomMachine.objects.StructureBlocks;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Location;
@@ -18,17 +18,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-public class itemCommandListener implements CommandExecutor {
+public class CommandListener implements CommandExecutor {
 
-    Itemsplugin plugin;
+    KanaCustomMachine plugin;
 
-    public itemCommandListener(Itemsplugin itemsplugin) {
+    public CommandListener(KanaCustomMachine itemsplugin) {
         plugin = itemsplugin;
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (command.getName().equalsIgnoreCase("kanaitem") && args.length >= 1) {
+        if (command.getName().equalsIgnoreCase("custommachines") && args.length >= 1) {
 
             String baseArgument = args[0];
 

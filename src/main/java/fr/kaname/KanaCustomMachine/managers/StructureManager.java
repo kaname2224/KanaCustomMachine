@@ -1,9 +1,9 @@
-package fr.kaname.itemsplugin.managers;
+package fr.kaname.KanaCustomMachine.managers;
 
-import fr.kaname.itemsplugin.Itemsplugin;
-import fr.kaname.itemsplugin.objects.Rotation;
-import fr.kaname.itemsplugin.objects.Structure;
-import fr.kaname.itemsplugin.objects.StructureBlocks;
+import fr.kaname.KanaCustomMachine.KanaCustomMachine;
+import fr.kaname.KanaCustomMachine.enums.Rotation;
+import fr.kaname.KanaCustomMachine.objects.Structure;
+import fr.kaname.KanaCustomMachine.objects.StructureBlocks;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,13 +19,13 @@ import java.util.logging.Level;
 
 public class StructureManager {
 
-    private final Itemsplugin plugin;
+    private final KanaCustomMachine plugin;
 
     private final Map<Player, Map<String, Location>> PlayerMapLocation = new HashMap<>();
     private final Map<Player, Structure> PlayerStructureInMemory = new HashMap<>();
     private final List<Structure> structureInMemory = new ArrayList<>();
 
-    public StructureManager(Itemsplugin plugin) {
+    public StructureManager(KanaCustomMachine plugin) {
         this.plugin = plugin;
     }
 
@@ -187,9 +187,6 @@ public class StructureManager {
             String fileName = structure.getUuid() + ".dat";
 
             try {
-
-                this.plugin.getLogger().log(Level.INFO, this.plugin.getDataFolder().getPath());
-
                 File file = new File(this.plugin.getDataFolder().getPath() + "/structures", fileName);
 
                 if(!file.exists()) {

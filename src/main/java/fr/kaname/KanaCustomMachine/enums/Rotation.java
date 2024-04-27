@@ -1,4 +1,4 @@
-package fr.kaname.itemsplugin.objects;
+package fr.kaname.KanaCustomMachine.enums;
 
 public enum Rotation {
 

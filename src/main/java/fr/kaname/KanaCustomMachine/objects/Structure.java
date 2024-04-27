@@ -1,5 +1,6 @@
-package fr.kaname.itemsplugin.objects;
+package fr.kaname.KanaCustomMachine.objects;
 
+import fr.kaname.KanaCustomMachine.enums.Rotation;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -92,12 +93,10 @@ public class Structure {
     public void addBlock(StructureBlocks structureBlocks,  Rotation rotation) {
 
         if (!this.hasHeight(structureBlocks.getY(), rotation)) {
-            System.out.println("Add Height " + structureBlocks.getY());
             this.addHeight(structureBlocks.getY(), rotation);
         }
 
         if (!this.hasRow(structureBlocks.getX(), structureBlocks.getY(), rotation)) {
-            System.out.println("Add Row " + structureBlocks.getX());
             this.addRow(structureBlocks.getX(), structureBlocks.getY(), rotation);
         }
 

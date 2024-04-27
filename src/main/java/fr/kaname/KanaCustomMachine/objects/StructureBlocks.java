@@ -1,4 +1,4 @@
-package fr.kaname.itemsplugin.objects;
+package fr.kaname.KanaCustomMachine.objects;
 
 import org.bukkit.Material;
 

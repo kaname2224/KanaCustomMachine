@@ -1,6 +1,6 @@
-package fr.kaname.itemsplugin.listeners;
+package fr.kaname.KanaCustomMachine.listeners;
 
-import fr.kaname.itemsplugin.Itemsplugin;
+import fr.kaname.KanaCustomMachine.KanaCustomMachine;
 import net.Indyuce.mmoitems.MMOItems;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -20,9 +20,9 @@ import java.util.Objects;
 
 public class ClickListener implements Listener {
 
-    Itemsplugin plugin;
+    KanaCustomMachine plugin;
 
-    public ClickListener(Itemsplugin itemsplugin) {
+    public ClickListener(KanaCustomMachine itemsplugin) {
         this.plugin = itemsplugin;
     }
 

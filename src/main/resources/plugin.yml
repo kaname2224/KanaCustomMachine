@@ -1,12 +1,12 @@
-name: itemsplugin
+name: KanaCustomMachine
 version: '${project.version}'
-main: fr.kaname.itemsplugin.Itemsplugin
+main: fr.kaname.KanaCustomMachine.KanaCustomMachine
 api-version: '1.20'
 author: "Kaname"
-description: "Hypercraft guilds plugin"
+description: "Custom Machine"
 
 commands:
-  kanaitem:
+  custommachines:
     permission: itemplugin.kanaitem
     aliases:
-      - ki
+      - cm
