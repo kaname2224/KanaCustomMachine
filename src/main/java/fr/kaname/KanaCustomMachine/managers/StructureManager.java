@@ -1,6 +1,7 @@
 package fr.kaname.KanaCustomMachine.managers;
 
 import fr.kaname.KanaCustomMachine.KanaCustomMachine;
+import fr.kaname.KanaCustomMachine.enums.Folders;
 import fr.kaname.KanaCustomMachine.enums.Rotation;
 import fr.kaname.KanaCustomMachine.objects.Structure;
 import fr.kaname.KanaCustomMachine.objects.StructureBlocks;
@@ -31,7 +32,7 @@ public class StructureManager {
 
     public void loadStructuresInFiles() {
 
-        File[] fileList = this.plugin.loadStructureFolder().listFiles();
+        File[] fileList = this.plugin.getFolder(Folders.STRUCTURE).listFiles();
 
         for (File file : fileList) {
             Structure structure = loadStructureFile(file.getName());
@@ -216,7 +217,7 @@ public class StructureManager {
 
         try {
 
-            File file = new File(this.plugin.getDataFolder().getPath() + "/structures", fileName);
+            File file = new File(this.plugin.getFolder(Folders.STRUCTURE), fileName);
 
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);

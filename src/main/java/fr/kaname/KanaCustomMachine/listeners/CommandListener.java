@@ -2,8 +2,7 @@ package fr.kaname.KanaCustomMachine.listeners;
 
 import fr.kaname.KanaCustomMachine.KanaCustomMachine;
 import fr.kaname.KanaCustomMachine.enums.Rotation;
-import fr.kaname.KanaCustomMachine.objects.Structure;
-import fr.kaname.KanaCustomMachine.objects.StructureBlocks;
+import fr.kaname.KanaCustomMachine.objects.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Location;
@@ -12,6 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
@@ -114,6 +114,18 @@ public class CommandListener implements CommandExecutor {
                 this.plugin.getStructureManager().registerPlayerStructure(player, structure);
 
 
+
+            }
+
+            if (baseArgument.equals("inventory") && args.length > 1) {
+                String machineName = args[1];
+                CraftingMachine machine = this.plugin.getMachineManager().getMachine(machineName);
+
+                if (machine == null) {
+                    return false;
+                }
+
+                this.plugin.getMachineManager().openCraftingMachine(player, machine);
 
             }
 
