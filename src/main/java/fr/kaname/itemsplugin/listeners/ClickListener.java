@@ -50,11 +50,14 @@ public class ClickListener implements Listener {
 
         if (action.isRightClick() && item.getItemMeta().equals(MMOItems_DragonScute.getItemMeta()) && playerInteractEvent.getHand() == EquipmentSlot.HAND) {
             Block block = playerInteractEvent.getClickedBlock();
-            item.setAmount(item.getAmount() - 1);
-            plugin.getStructureDetectionManager().detectStructure(player, block.getType(), block.getLocation());
+            boolean isStructureValid = plugin.getStructureDetectionManager().createMachine(player, block.getType(), block.getLocation());
 
-            Particle.DUST_COLOR_TRANSITION.builder().colorTransition(Color.RED, Color.WHITE).location(playerInteractEvent.getInteractionPoint()).count(100).offset(0.5, 0.5, 0.5).spawn();
-            Particle.DUST_COLOR_TRANSITION.builder().colorTransition(Color.BLUE, Color.WHITE).location(playerInteractEvent.getInteractionPoint()).count(100).offset(0.8, 0.8, 0.8).spawn();
+            if (isStructureValid) {
+                item.setAmount(item.getAmount() - 1);
+                Particle.DUST_COLOR_TRANSITION.builder().colorTransition(Color.RED, Color.WHITE).location(playerInteractEvent.getInteractionPoint()).count(100).offset(0.5, 0.5, 0.5).spawn();
+                Particle.DUST_COLOR_TRANSITION.builder().colorTransition(Color.BLUE, Color.WHITE).location(playerInteractEvent.getInteractionPoint()).count(100).offset(0.8, 0.8, 0.8).spawn();
+
+            }
 
             playerInteractEvent.setCancelled(true);
             return;

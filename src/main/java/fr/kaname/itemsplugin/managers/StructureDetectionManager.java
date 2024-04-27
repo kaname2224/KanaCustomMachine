@@ -121,7 +121,7 @@ public class StructureDetectionManager {
         return true;
     }
 
-    public void detectStructure(Player player, Material material, Location blockPlacedLocation) {
+    public boolean createMachine(Player player, Material material, Location blockPlacedLocation) {
 
         Location structureReferenceBlockLocation = null;
         Rotation structureRotation = null;
@@ -155,9 +155,12 @@ public class StructureDetectionManager {
                 player.sendMessage(Component.text("Référence Coords : " + structureReferenceBlockLocation.getBlockX() + " " + structureReferenceBlockLocation.getBlockY() + " " + structureReferenceBlockLocation.getBlockZ()));
                 player.sendMessage(Component.text("Rotation : " + structureRotation));
                 player.sendMessage(Component.text("--------------------------"));
-                break;
+                return isStructureValid;
             }
+
         }
+
+        return false;
 
     }
 }
