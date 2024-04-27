@@ -7,13 +7,11 @@ import fr.kaname.itemsplugin.objects.StructureBlocks;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 public class StructureDetectionManager {
 

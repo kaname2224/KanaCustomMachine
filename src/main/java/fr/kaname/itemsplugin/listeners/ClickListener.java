@@ -1,14 +1,9 @@
 package fr.kaname.itemsplugin.listeners;
 
 import fr.kaname.itemsplugin.Itemsplugin;
-import fr.kaname.itemsplugin.objects.Rotation;
-import fr.kaname.itemsplugin.objects.Structure;
-import fr.kaname.itemsplugin.objects.StructureBlocks;
 import net.Indyuce.mmoitems.MMOItems;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -21,11 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.logging.Level;
 
 public class ClickListener implements Listener {
 
