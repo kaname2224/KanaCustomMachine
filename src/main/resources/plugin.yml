@@ -1,0 +1,12 @@
+name: itemsplugin
+version: '${project.version}'
+main: fr.kaname.itemsplugin.Itemsplugin
+api-version: '1.20'
+author: "Kaname"
+description: "Hypercraft guilds plugin"
+
+commands:
+  kanaitem:
+    permission: itemplugin.kanaitem
+    aliases:
+      - ki
