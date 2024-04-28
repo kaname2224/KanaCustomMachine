@@ -45,6 +45,7 @@ public class InventoryListener implements Listener {
             }
 
             if (inventory.getSize() > clickedSlot && inventory.getItem(clickedSlot) == null) {
+                event.setCancelled(true);
                 return;
             }
 
@@ -62,7 +63,11 @@ public class InventoryListener implements Listener {
                         return;
                     }
                 } else {
-                    return;
+                    if (player.getItemOnCursor().getType().equals(inventory.getItem(clickedSlot).getType())) {
+                        player.getItemOnCursor().add(inventory.getItem(clickedSlot).getAmount());
+                    } else {
+                        return;
+                    }
                 }
 
 

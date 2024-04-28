@@ -77,8 +77,12 @@ public class ClickListener implements Listener {
                     );
 
                     if (test) {
-
-                        this.plugin.getMachineManager().openMachinePlayer(player, playerMachine);
+                        if (this.plugin.getStructureDetectionManager().checkStructureIntegrity(playerMachine.getMachine().getStructure(), playerMachine.getReference(), playerMachine.getRotation())) {
+                            this.plugin.getMachineManager().openMachinePlayer(player, playerMachine);
+                        } else {
+                            this.plugin.getMachineManager().deletePlayerMachine(playerMachine);
+                            player.sendMessage(Component.text("Machine invalide !!"));
+                        }
                     }
 
                 }
@@ -92,11 +96,12 @@ public class ClickListener implements Listener {
             for (CraftingMachine machine : this.plugin.getMachineManager().getMachinesInMemory().values()) {
                 if (machine.checkActivationItem(item)) {
                     structure = plugin.getStructureDetectionManager().createStructure(block.getType(), block.getLocation());
-                    craftingMachine = this.plugin.getMachineManager().loadCraftingMachine(machine.getName());
 
-                    if (!structure.getUuid().equals(machine.getStructure().getUuid())) {
+                    if (structure == null || !structure.getUuid().equals(machine.getStructure().getUuid())) {
                         return;
                     }
+
+                    craftingMachine = this.plugin.getMachineManager().loadCraftingMachine(machine.getName());
                 }
             }
 

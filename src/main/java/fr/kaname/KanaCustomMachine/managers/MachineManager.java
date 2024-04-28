@@ -26,7 +26,6 @@ public class MachineManager {
     Map<String, CraftingMachine> MachinesInMemory = new HashMap<>();
     Map<Player, PlayerMachine> PlayerMachinesOpen = new HashMap<>();
     Map<Player, CraftingMachine> MachineOpen = new HashMap<>();
-
     Map<Location, PlayerMachine> PlayerMachinesInMemory = new HashMap<>();
 
     public MachineManager(KanaCustomMachine plugin) {
@@ -274,6 +273,13 @@ public class MachineManager {
         PlayerMachine playerMachine = new PlayerMachine(machine, rotation, reference);
         if (!this.getPlayerMachinesInMemory().containsKey(reference)) {
             this.PlayerMachinesInMemory.put(reference, playerMachine);
+        }
+    }
+
+    public void deletePlayerMachine(PlayerMachine playerMachine) {
+        if (this.getPlayerMachinesInMemory().containsKey(playerMachine.getReference())) {
+            this.PlayerMachinesInMemory.remove(playerMachine.getReference());
+            playerMachine.getReference().getWorld().createExplosion(playerMachine.getReference().add(0, 1, 0), 10);
         }
     }
 

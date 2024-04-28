@@ -64,6 +64,7 @@ public final class KanaCustomMachine extends JavaPlugin {
         folders.put(Folders.STRUCTURE, new File(getDataFolder(), "structures"));
         folders.put(Folders.MACHINES, new File(getDataFolder(), "machines"));
         folders.put(Folders.RECIPE, new File(getDataFolder(), "recipes"));
+        folders.put(Folders.WORLD_MACHINE_DATA, new File(getDataFolder(), "worldMachineData"));
 
         // Subfolder
         folders.put(Folders.RECIPE_CRAFTING, new File(getDataFolder() + "/recipes", "crafting"));

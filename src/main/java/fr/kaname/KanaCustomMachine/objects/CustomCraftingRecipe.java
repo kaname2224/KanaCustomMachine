@@ -41,7 +41,6 @@ public class CustomCraftingRecipe {
         if (this.input.containsKey(slot)) {
 
             // On check si l'item possède des attribus
-
             if (!this.input.get(slot).hasItemMeta()) { // Si non on vérifie le material
                 return this.input.get(slot).getType().equals(material);
             }
