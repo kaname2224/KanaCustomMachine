@@ -31,10 +31,12 @@ public final class KanaCustomMachine extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().log(Level.INFO, "Starting itemPlugins");
+
         Objects.requireNonNull(this.getCommand("custommachines")).setExecutor(new CommandListener(this));
+
         this.getServer().getPluginManager().registerEvents(new ClickListener(this), this);
         this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
+
         this.structureManager = new StructureManager(this);
         this.structureDetectionManager = new StructureDetectionManager(this);
         this.machineManager = new MachineManager(this);

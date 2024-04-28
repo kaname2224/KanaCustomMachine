@@ -12,10 +12,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 
 public class StructureManager {
@@ -42,6 +39,16 @@ public class StructureManager {
         }
 
 
+    }
+
+    public Structure getStructureByUUID(UUID uuid) {
+        for (Structure structure : this.structureInMemory) {
+            if (structure.getUuid().equals(uuid)) {
+                return structure;
+            }
+        }
+
+        return null;
     }
 
     public List<Structure> getStructureInMemory() {

@@ -32,12 +32,26 @@ public class CustomCraftingRecipe {
 
         Material material = itemStack.getType();
 
+        // Si le slot n'est pas utilisé alors on valide
         if (material == Material.AIR && !this.input.containsKey(slot)) {
             return true;
         }
 
+        // Si le slot est utilisé
         if (this.input.containsKey(slot)) {
-            return this.input.get(slot).getType().equals(material);
+
+            // On check si l'item possède des attribus
+
+            if (!this.input.get(slot).hasItemMeta()) { // Si non on vérifie le material
+                return this.input.get(slot).getType().equals(material);
+            }
+
+            // Si oui on vérifie l'ItemMeta en plus du material
+            if (itemStack.hasItemMeta()) {
+                if (this.input.get(slot).getType().equals(material)) {
+                    return this.input.get(slot).getItemMeta().equals(itemStack.getItemMeta());
+                }
+            }
         }
 
         return false;

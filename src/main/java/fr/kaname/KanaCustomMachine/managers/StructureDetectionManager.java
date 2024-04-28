@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class StructureDetectionManager {
 
@@ -108,6 +109,12 @@ public class StructureDetectionManager {
 
     }
 
+    public boolean isLocationInStructure(Structure structure, Location reference, Rotation rotation, Location location) {
+        return (reference.getBlockX() >= location.getBlockX() && location.getBlockX() >= reference.getBlockX() + structure.getMinX(rotation)) &&
+                (reference.getBlockY() <= location.getBlockY() && location.getBlockY() <= reference.getBlockY() + structure.getMaxY(rotation)) &&
+                        (reference.getBlockZ() >= location.getBlockZ() && location.getBlockZ() >= reference.getBlockZ() + structure.getMinZ(rotation));
+    }
+
     public boolean checkStructureIntegrity(Structure structure, Location referenceBlockLocation, Rotation rotation) {
         Map<Location, Material> structureLocation = structure.generateLocation(rotation, referenceBlockLocation);
         for (Location realLocation : structureLocation.keySet()) {
@@ -119,7 +126,7 @@ public class StructureDetectionManager {
         return true;
     }
 
-    public boolean createMachine(Player player, Material material, Location blockPlacedLocation) {
+    public Structure createStructure(Material material, Location blockPlacedLocation) {
 
         Location structureReferenceBlockLocation = null;
         Rotation structureRotation = null;
@@ -147,18 +154,15 @@ public class StructureDetectionManager {
                 }
             }
             if (isStructureValid) {
-                player.sendMessage(Component.text("--- Structure créée !! ---"));
-                player.sendMessage(Component.text("UUID : " + structure.getUuid()));
-                player.sendMessage(Component.text("Référence Material : " + structure.getReferenceBlock(structureRotation).getMaterial()));
-                player.sendMessage(Component.text("Référence Coords : " + structureReferenceBlockLocation.getBlockX() + " " + structureReferenceBlockLocation.getBlockY() + " " + structureReferenceBlockLocation.getBlockZ()));
-                player.sendMessage(Component.text("Rotation : " + structureRotation));
-                player.sendMessage(Component.text("--------------------------"));
-                return isStructureValid;
+                structure.setRotation(structureRotation);
+                structure.setReferenceBlockLocation(structureReferenceBlockLocation);
+
+                return structure;
             }
 
         }
 
-        return false;
+        return null;
 
     }
 }

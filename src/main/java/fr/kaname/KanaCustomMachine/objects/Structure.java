@@ -3,6 +3,7 @@ package fr.kaname.KanaCustomMachine.objects;
 import fr.kaname.KanaCustomMachine.enums.Rotation;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -12,8 +13,10 @@ public class Structure {
     private final Map<Rotation, Map<Integer, Map<Integer, Map<Integer, Material>>>> MapList;
     private String Name;
     private final UUID uuid;
-
     private final List<Material> materialList = new ArrayList<>();
+
+    private Rotation rotation;
+    private Location ReferenceBlockLocation;
 
     public Structure() {
 
@@ -270,6 +273,14 @@ public class Structure {
                 '}';
     }
 
+    public Rotation getRotation() {
+        return rotation;
+    }
+
+    public Location getReferenceBlockLocation() {
+        return ReferenceBlockLocation;
+    }
+
     public @NotNull Map<String, Object> serialize() {
         Map<String, Object> data = new HashMap<>();
 
@@ -278,6 +289,14 @@ public class Structure {
         data.put("Structure", this.MapList);
 
         return data;
+    }
+
+    public void setRotation(Rotation rotation) {
+        this.rotation = rotation;
+    }
+
+    public void setReferenceBlockLocation(Location referenceBlockLocation) {
+        ReferenceBlockLocation = referenceBlockLocation;
     }
 
     public static Structure deserialize(Map<String, Object> args) {

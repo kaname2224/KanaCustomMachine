@@ -12,7 +12,6 @@ public class CustomInventory implements InventoryHolder {
     public CustomInventory(KanaCustomMachine plugin, int size) {
         // Create an Inventory with 9 slots, `this` here is our InventoryHolder.
         this.inventory = plugin.getServer().createInventory(this, size);
-        this.inventory.setMaxStackSize(1);
     }
 
     @Override
