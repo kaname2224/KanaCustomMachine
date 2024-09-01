@@ -10,6 +10,7 @@ import fr.kaname.KanaCustomMachine.managers.StructureManager;
 
 import java.io.File;
 
+import fr.kaname.KanaCustomMachine.managers.TickManager;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +21,7 @@ public final class KanaCustomMachine extends JavaPlugin {
 
     private StructureManager structureManager;
     private StructureDetectionManager structureDetectionManager;
+    private TickManager tickManager;
 
     private MachineManager machineManager;
 
@@ -40,6 +42,7 @@ public final class KanaCustomMachine extends JavaPlugin {
         this.structureManager = new StructureManager(this);
         this.structureDetectionManager = new StructureDetectionManager(this);
         this.machineManager = new MachineManager(this);
+        this.tickManager = new TickManager(this);
 
         this.folders = new HashMap<>();
         this.saveDefaultConfig();
@@ -84,6 +87,8 @@ public final class KanaCustomMachine extends JavaPlugin {
     public StructureDetectionManager getStructureDetectionManager() {
         return structureDetectionManager;
     }
+
+    public TickManager getTickManager() {return tickManager;}
 
 
 }

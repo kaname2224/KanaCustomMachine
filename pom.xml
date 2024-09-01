@@ -77,7 +77,7 @@
         <profile>
             <id>Serveur</id>
             <build>
-                <directory>C:\Users\Maxime\Documents\Developpement\Structure Plugin\server\plugins</directory>
+                <directory>/home/maxime/Documents/Hypercraft TEST/Serveur Vide/plugins</directory>
             </build>
         </profile>
     </profiles>
